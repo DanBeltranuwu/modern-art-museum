@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
-import { MuseumArtworkService } from './museum-artwork.service';
-import { MuseumArtworkController } from './museum-artwork.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MuseumEntity } from 'src/museum/museum.entity';
-
+import { MuseumService } from 'src/museum/museum.service';
 @Module({
   imports: [TypeOrmModule.forFeature([MuseumEntity])],
-  providers: [MuseumArtworkService],
-  controllers: [MuseumArtworkController],
+  providers: [MuseumService],
 })
 export class MuseumArtworkModule {}

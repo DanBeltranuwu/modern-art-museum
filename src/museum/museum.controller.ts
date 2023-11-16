@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import {
   Body,
   Controller,
@@ -15,7 +17,7 @@ import { MuseumDto } from './museum.dto';
 import { MuseumEntity } from './museum.entity';
 import { plainToInstance } from 'class-transformer';
 
-@Controller('museum')
+@Controller('museums')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class MuseumController {
   constructor(private readonly museumService: MuseumService) {}

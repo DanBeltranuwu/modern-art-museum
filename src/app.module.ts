@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,7 +18,6 @@ import { ImageEntity } from './image/image.entity';
 import { MovementEntity } from './movement/movement.entity';
 import { MuseumEntity } from './museum/museum.entity';
 import { SponsorEntity } from './sponsor/sponsor.entity';
-import { MuseumArtworkController } from './museum-artwork/museum-artwork.controller';
 import { MuseumArtworkModule } from './museum-artwork/museum-artwork.module';
 
 @Module({
@@ -50,7 +51,7 @@ import { MuseumArtworkModule } from './museum-artwork/museum-artwork.module';
     }),
     MuseumArtworkModule,
   ],
-  controllers: [AppController, MuseumArtworkController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

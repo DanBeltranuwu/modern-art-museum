@@ -1,6 +1,20 @@
-import { Controller, Param, Post, UseInterceptors } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Put,
+  UseInterceptors,
+} from '@nestjs/common';
 import { MuseumArtworkService } from './museum-artwork.service';
 import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors/business-errors.interceptor';
+import { ArtworkDto } from 'src/artwork/artwork.dto';
+import { plainToInstance } from 'class-transformer';
+import { ArtworkEntity } from 'src/artwork/artwork.entity';
 
 @Controller('museums')
 @UseInterceptors(BusinessErrorsInterceptor)
@@ -24,6 +38,35 @@ export class MuseumArtworkController {
     @Param('artworkId') artworkId: string,
   ) {
     return await this.museumArtworkService.findArtworkByMuseumIdArtworkId(
+      museumId,
+      artworkId,
+    );
+  }
+
+  @Get(':museumId/artworks')
+  async findArtworksByMuseumId(@Param('museumId') museumId: string) {
+    return await this.museumArtworkService.findArtworksByMuseumId(museumId);
+  }
+
+  @Put(':museumId/artworks')
+  async associateArtworksMuseum(
+    @Body() artworksDto: ArtworkDto[],
+    @Param('museumId') museumId: string,
+  ) {
+    const artworks = plainToInstance(ArtworkEntity, artworksDto);
+    return await this.museumArtworkService.associateArtworksMuseum(
+      museumId,
+      artworks,
+    );
+  }
+
+  @Delete(':museumId/artworks/:artworkId')
+  @HttpCode(204)
+  async deleteArtworkMuseum(
+    @Param('museumId') museumId: string,
+    @Param('artworkId') artworkId: string,
+  ) {
+    return await this.museumArtworkService.deleteArtworkMuseum(
       museumId,
       artworkId,
     );

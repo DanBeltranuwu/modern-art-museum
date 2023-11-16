@@ -1,11 +1,11 @@
+/* eslint-disable prettier/prettier */
+
 import { Injectable } from '@nestjs/common';
 import { MuseumEntity } from './museum.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import {
-  BusinessError,
-  BusinessLogicException,
-} from '../../src/shared/errors/business-errors';
+import { BusinessError, BusinessLogicException } from 'src/shared/errors/business-errors';
+
 
 @Injectable()
 export class MuseumService {
